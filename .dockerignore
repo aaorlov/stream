@@ -1,0 +1,4 @@
+Dockerfile
+.git/
+.idea/
+.DS_Store/

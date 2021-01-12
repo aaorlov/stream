@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  stream:
+    image: stream
+    build:
+        context: .
+        target: build
+    container_name: stream
+    entrypoint: ""
+    command: sleep infinity
+    env_file: .env
+    environment:
+      LOG_LEVEL:
+      ENVIRONMENT: DEVELOPMENT
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/var/app
+      - ~/.bash_history:/root/.bash_history
+
+# mongodb:
+#   image: mongo:4.0.2
+#   container_name: hyperledger-api-db-spherity
+#   restart: always
+#   volumes:
+#     - "./.db/mongodata-spherity/db:/data/db"
+#     - "./.db/mongodata-spherity/configdb:/data/configdb"
+#     - ~/.bash_history:/root/.bash_history
+#   ports:
+#     - 27017:27017
+
+# postgresdb:
+#   image: postgres
+#   container_name: postgres-storage
+#   restart: always
+#   environment:
+#     - POSTGRES_USER
+#     - POSTGRES_PASSWORD
+#   volumes:
+#     - ./.db/postgres:/var/lib/postgresql
+#   ports:
+#     - 5432:5432
+    
